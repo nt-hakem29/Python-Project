@@ -85,19 +85,21 @@ plt.show()
 ### Results
 
 ![Likeilyhood of Skills Requested in African Countries](https://github.com/nt-hakem29/Python-Project/blob/83c415186a119d435d7d058c11bb9ef999a314d2/images/Likeilyhood%20of%20Skills%20Requested%20in%20Africa.png)
+
+
 *Bar graph visualizing the salary for the top 3 data roles and their top 5 skills associated with each.*
 
 ### Insights:
 
-- SQL is the most requested skill for Data Analysts and Data Scientists, with it in over half the job postings for both roles. For Data Engineers, Python is the most sought-after skill, appearing in 68% of job postings.
-- Data Engineers require more specialized technical skills (AWS, Azure, Spark) compared to Data Analysts and Data Scientists who are expected to be proficient in more general data management and analysis tools (Excel, Tableau).
-- Python is a versatile skill, highly demanded across all three roles, but most prominently for Data Scientists (72%) and Data Engineers (65%).
+- SQL is the most requested skill for Data Analysts and Data Engineers.For Data Engineers, SQL is the most sought-after skill, appearing in 68% of job postings.
+- Data Engineers require more specialized technical skills (AWS, Azure, Spark) compared to Data Analysts and Data Scientists who are expected to be proficient in more general data management and analysis tools (e.g Tableau).
+- Python is a versatile skill, highly demanded across all three roles, but most prominently for Data Scientists (68%) and Data Engineers (65%).
 
 ## 2. How are in-demand skills trending for Data Analysts?
 
 To find how skills are trending in 2023 for Data Analysts, I filtered data analyst positions and grouped the skills by the month of the job postings. This got me the top 5 skills of data analysts by month, showing how popular skills were throughout 2023.
 
-View my notebook with detailed steps here: [3_Skills_Trend](3_Skills_Trend.ipynb).
+View my notebook with detailed steps here: https://github.com/nt-hakem29/Python-Project/blob/3604c5b7e9627d8dc6c3a0753b5039208927845b/Skills%20Trend.ipynb.
 
 ### Visualize Data
 
@@ -105,50 +107,61 @@ View my notebook with detailed steps here: [3_Skills_Trend](3_Skills_Trend.ipynb
 
 from matplotlib.ticker import PercentFormatter
 
-df_plot = df_DA_US_percent.iloc[:, :5]
-sns.lineplot(data=df_plot, dashes=False, legend='full', palette='tab10')
-
+df_plot = df_pivot_af_perc.iloc[:,:5]
+sns.lineplot(data=df_plot,legend='full',dashes=None)
+plt.title('Trending top skills by percentage in Africa ')
+plt.xlabel('2023')
+sns.set_theme(style='ticks')
+sns.despine()
+plt.legend().remove()
 plt.gca().yaxis.set_major_formatter(PercentFormatter(decimals=0))
+for i in range(5):
+    plt.text(11.2, df_plot.iloc[-1, i], df_plot.columns[i], color='black')
 
 plt.show()
-
 ```
 
 ### Results
+![Trending SKills in African Countries](https://github.com/nt-hakem29/Python-Project/blob/3604c5b7e9627d8dc6c3a0753b5039208927845b/images/Trendin%20Top%20skills%20in%20Africa.png)
 
-![Trending Top Skills for Data Analysts in the US](images/Trending_Top_Skills_for_Data_Analysts_in_the_US.png)  
 *Bar graph visualizing the trending top skills for data analysts in the US in 2023.*
 
 ### Insights:
-- SQL remains the most consistently demanded skill throughout the year, although it shows a gradual decrease in demand.
-- Excel experienced a significant increase in demand starting around September, surpassing both Python and Tableau by the end of the year.
-- Both Python and Tableau show relatively stable demand throughout the year with some fluctuations but remain essential skills for data analysts. Power BI, while less demanded compared to the others, shows a slight upward trend towards the year's end.
+- SQL remains the most consistently demanded skill throughout the year.
+- Python experienced a significant increase in demand starting around August, surpassing Excel, Power BI and Tableau by the end of the year.
+- Both SQL and Excel show relatively stable demand throughout the year with some fluctuations but remain essential skills for data analysts. Power BI, while less demanded compared to the others, shows a slight upward trend towards the year's end.
 
 ## 3. How well do jobs and skills pay for Data Analysts?
 
 To identify the highest-paying roles and skills, I only got jobs in the United States and looked at their median salary. But first I looked at the salary distributions of common data jobs like Data Scientist, Data Engineer, and Data Analyst, to get an idea of which jobs are paid the most. 
 
-View my notebook with detailed steps here: [4_Salary_Analysis](4_Salary_Analysis.ipynb).
+View my notebook with detailed steps here: https://github.com/nt-hakem29/Python-Project/blob/3604c5b7e9627d8dc6c3a0753b5039208927845b/Salary%20Analysis.ipynb.
 
 #### Visualize Data 
 
 ```python
-sns.boxplot(data=df_US_top6, x='salary_year_avg', y='job_title_short', order=job_order)
+sns.boxplot(data=df_af_top6, x='salary_year_avg', y='job_title_short', order=job_order)
+sns.set_theme(style='ticks')
+sns.despine()
 
+plt.title('Salary Distributions of Data Jobs in the US')
+plt.xlabel('Yearly Salary (USD)')
+plt.ylabel('')
+plt.xlim(0, 600000) 
 ticks_x = plt.FuncFormatter(lambda y, pos: f'${int(y/1000)}K')
 plt.gca().xaxis.set_major_formatter(ticks_x)
 plt.show()
 
-```
 
 #### Results
 
-![Salary Distributions of Data Jobs in the US](images/Salary_Distributions_of_Data_Jobs_in_the_US.png)  
+![Salary Distributions of Data Jobs in African Countries](https://github.com/nt-hakem29/Python-Project/blob/53691b93b9fac682d7e9dcca529dacfcbd42a62a/images/Salary%20Distributions%20of%20Data%20Jobs%20in%20Africa.png)
+
 *Box plot visualizing the salary distributions for the top 6 data job titles.*
 
 #### Insights
 
-- There's a significant variation in salary ranges across different job titles. Senior Data Scientist positions tend to have the highest salary potential, with up to $600K, indicating the high value placed on advanced data skills and experience in the industry.
+- There's a significant variation in salary ranges across different job titles. Senior Data Scientist positions tend to have the highest salary potential, with up to $250K, indicating the high value placed on advanced data skills and experience in the industry.
 
 - Senior Data Engineer and Senior Data Scientist roles show a considerable number of outliers on the higher end of the salary spectrum, suggesting that exceptional skills or circumstances can lead to high pay in these roles. In contrast, Data Analyst roles demonstrate more consistency in salary, with fewer outliers.
 
