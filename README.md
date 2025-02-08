@@ -84,7 +84,7 @@ plt.show()
 
 ### Results
 
-![Likeilyhood of Skills Requested in African Countries](Python-Project/images/Likeilyhood of Skills Requested in Africa.png)
+![Likeilyhood of Skills Requested in African Countries](https://github.com/nt-hakem29/Python-Project/blob/83c415186a119d435d7d058c11bb9ef999a314d2/images/Likeilyhood%20of%20Skills%20Requested%20in%20Africa.png)
 *Bar graph visualizing the salary for the top 3 data roles and their top 5 skills associated with each.*
 
 ### Insights:
