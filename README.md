@@ -50,12 +50,12 @@ df['job_posted_date'] = pd.to_datetime(df['job_posted_date'])
 df['job_skills'] = df['job_skills'].apply(lambda x: ast.literal_eval(x) if pd.notna(x) else x)
 ```
 
-## Filter US Jobs
+## Filter African Jobs
 
-To focus my analysis on the U.S. job market, I apply filters to the dataset, narrowing down to roles based in the United States.
+To focus my analysis on the African job market, I apply filters to the dataset, narrowing down to roles based in 5 African countries: South Africa, Sudan,Egypt,Kenya& Nigeria.
 
 ```python
-df_US = df[df['job_country'] == 'United States']
+df_Africa = df[((df['job_country'] == 'South Africa') |  (df['job_country'] == 'Sudan') | (df['job_country'] == 'Egypt') | (df['job_country'] == 'Kenya') | (df['job_country'] == 'Nigeria'))]
 
 ```
 
